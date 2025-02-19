@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List Mini App</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js" defer></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #todo-list { list-style-type: none; padding: 0; }
+        #todo-list li { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <input type="text" id="newTodo" placeholder="Add a new todo...">
+    <button onclick="addTodo()">Add</button>
+    <ul id="todo-list"></ul>
+</body>
+</html>
