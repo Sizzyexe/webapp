@@ -1,37 +1,38 @@
 // app.js
-let todoList = [];
+const products = [
+    { id: 1, name: "Товар 1", price: 100 },
+    { id: 2, name: "Товар 2", price: 200 },
+    // Добавьте больше товаров по мере необходимости
+];
 
-function addTodo() {
-    const input = document.getElementById('newTodo');
-    if (input.value) {
-        todoList.push(input.value);
-        input.value = '';
-        renderTodos();
-    }
-}
-
-function renderTodos() {
-    const list = document.getElementById('todo-list');
-    list.innerHTML = '';
-    todoList.forEach((todo, index) => {
-        const li = document.createElement('li');
-        li.textContent = todo;
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-        deleteButton.onclick = () => removeTodo(index);
-        li.appendChild(deleteButton);
-        list.appendChild(li);
+function displayProducts() {
+    const productsDiv = document.getElementById('products');
+    productsDiv.innerHTML = '';
+    products.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.className = 'product';
+        productElement.innerHTML = `
+            <h3>${product.name}</h3>
+            <p>Цена: ${product.price} руб.</p>
+            <button onclick="addToCart(${product.id})">Добавить в корзину</button>
+        `;
+        productsDiv.appendChild(productElement);
     });
 }
 
-function removeTodo(index) {
-    todoList.splice(index, 1);
-    renderTodos();
+let cart = [];
+
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (product) {
+        cart.push(product);
+        window.Telegram.WebApp.showAlert(`Товар "${product.name}" добавлен в корзину!`);
+        // В реальном приложении здесь бы вы отправляли данные на сервер для обновления корзины
+        console.log(cart);
+    }
 }
 
-// Initialize Telegram Web App
+// Инициализация Telegram Web App
 window.Telegram.WebApp.ready();
 window.Telegram.WebApp.expand();
-
-// You can send data back to Telegram like this:
-// window.Telegram.WebApp.sendData(JSON.stringify(todoList));
+displayProducts();
