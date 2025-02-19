@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List Mini App</title>
+    <title>Магазин товаров</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="app.js" defer></script>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; }
-        #todo-list { list-style-type: none; padding: 0; }
-        #todo-list li { margin-bottom: 10px; }
+        .product { border: 1px solid #e0e0e0; margin-bottom: 10px; padding: 10px; }
+        .product button { margin-top: 5px; }
     </style>
 </head>
 <body>
-    <h1>Todo List</h1>
-    <input type="text" id="newTodo" placeholder="Add a new todo...">
-    <button onclick="addTodo()">Add</button>
-    <ul id="todo-list"></ul>
+    <h1>Мини-магазин товаров</h1>
+    <div id="products"></div>
 </body>
 </html>
